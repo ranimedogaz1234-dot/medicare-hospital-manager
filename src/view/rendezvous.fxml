@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+fx:controller="application.controller.RendezVousController"
+      spacing="15" styleClass="page-container">
+    <padding>
+        <Insets top="20" right="30" bottom="20" left="30"/>
+    </padding>
+
+    <HBox alignment="CENTER_LEFT" spacing="15">
+        <Label text="Gestion des Rendez-vous" styleClass="page-title">
+            <font>
+                <Font name="System Bold" size="28"/>
+            </font>
+        </Label>
+        <Region HBox.hgrow="ALWAYS"/>
+        <DatePicker fx:id="dateFilter" promptText="Filtrer par date" styleClass="date-picker"/>
+        <Button text="Nouveau RDV" onAction="#handleNewRdv" styleClass="action-button-primary" prefHeight="40"/>
+    </HBox>
+
+    <TableView fx:id="tableRendezVous" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn text="ID" prefWidth="50" fx:id="colId"/>
+            <TableColumn text="Patient" prefWidth="150" fx:id="colPatient"/>
+            <TableColumn text="Medecin" prefWidth="150" fx:id="colMedecin"/>
+            <TableColumn text="Date" prefWidth="100" fx:id="colDate"/>
+            <TableColumn text="Heure" prefWidth="80" fx:id="colHeure"/>
+            <TableColumn text="Motif" prefWidth="200" fx:id="colMotif"/>
+            <TableColumn text="Statut" prefWidth="100" fx:id="colStatut"/>
+            <TableColumn text="Actions" prefWidth="150" fx:id="colActions"/>
+        </columns>
+    </TableView>
+
+    <Label fx:id="lblTotal" text="Total: 0 rendez-vous" styleClass="info-label"/>
+</VBox>

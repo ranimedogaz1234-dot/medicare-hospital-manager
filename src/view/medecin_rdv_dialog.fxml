@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?><?import javafx.scene.layout.*?><?import javafx.geometry.*?>
+<DialogPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.AppointmentFormController" prefWidth="580">
+ <header><Label text="Rendez-vous médical" styleClass="dialog-title"><padding><Insets top="16" right="20" bottom="8" left="20"/></padding></Label></header>
+ <content><VBox spacing="14"><padding><Insets top="10" right="20" bottom="10" left="20"/></padding>
+  <Label text="Patient de votre liste"/><ComboBox fx:id="patientField" maxWidth="Infinity" promptText="Sélectionnez un patient"/>
+  <HBox spacing="15"><VBox spacing="8"><Label text="Date"/><DatePicker fx:id="dateField"/></VBox><VBox spacing="8"><Label text="Heure (HH:mm)"/><ComboBox fx:id="timeField" editable="true" prefWidth="140"/></VBox></HBox>
+  <Label text="Créneau de 30 minutes. Les chevauchements sont refusés." wrapText="true" styleClass="info-label"/>
+  <Label text="Motif"/><TextArea fx:id="reasonField" wrapText="true" prefRowCount="3"/>
+  <Label text="Statut"/><ComboBox fx:id="statusField" maxWidth="Infinity"/>
+  <Label text="Aucun patient ? Ajoutez-le d'abord dans Mes patients." wrapText="true" styleClass="info-label"/>
+  <Label fx:id="errorLabel" visible="false" managed="false" wrapText="true" maxWidth="520" styleClass="error-label"/>
+ </VBox></content>
+ <buttonTypes><ButtonType text="Enregistrer" buttonData="OK_DONE"/><ButtonType text="Retour" buttonData="CANCEL_CLOSE"/></buttonTypes>
+</DialogPane>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<ScrollPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+fx:controller="application.controller.MedecinProfilController"
+            fitToWidth="true" VBox.vgrow="ALWAYS">
+    <VBox spacing="25" maxWidth="700">
+        <padding><Insets top="10" right="10" bottom="20" left="10"/></padding>
+
+        <Label text="Mon Profil" styleClass="page-title">
+            <font><Font name="System Bold" size="28"/></font>
+        </Label>
+
+        <VBox spacing="15" styleClass="stat-card">
+            <padding><Insets top="20" right="25" bottom="20" left="25"/></padding>
+            <Label text="Informations professionnelles" styleClass="section-title">
+                <font><Font name="System Bold" size="16"/></font>
+            </Label>
+
+            <GridPane hgap="15" vgap="12">
+                <columnConstraints>
+                    <ColumnConstraints minWidth="120"/>
+                    <ColumnConstraints hgrow="ALWAYS"/>
+                </columnConstraints>
+                <Label text="Nom:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                <TextField fx:id="txtNom" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                <Label text="Prenom:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                <TextField fx:id="txtPrenom" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                <Label text="Specialite:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                <ComboBox fx:id="cbSpecialite" GridPane.columnIndex="1" GridPane.rowIndex="2" maxWidth="Infinity"/>
+                <Label text="Telephone:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+                <TextField fx:id="txtTelephone" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                <Label text="Email:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+                <TextField fx:id="txtEmail" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+                <Label text="Disponible:" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
+                <CheckBox fx:id="chkDisponible" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+                <Label text="Identifiant:" GridPane.columnIndex="0" GridPane.rowIndex="6"/>
+                <TextField fx:id="txtEmailConnexion" GridPane.columnIndex="1" GridPane.rowIndex="6"/>
+            </GridPane>
+
+            <Button text="Enregistrer le profil" onAction="#handleSaveProfil"
+                    styleClass="action-button-primary" prefHeight="40"/>
+        </VBox>
+
+        <VBox spacing="15" styleClass="stat-card">
+            <padding><Insets top="20" right="25" bottom="20" left="25"/></padding>
+            <Label text="Changer le mot de passe" styleClass="section-title">
+                <font><Font name="System Bold" size="16"/></font>
+            </Label>
+            <Label text="Nouveau mot de passe"/>
+            <PasswordField fx:id="txtNewPassword"/>
+            <Label text="Confirmer le mot de passe"/>
+            <PasswordField fx:id="txtConfirmPassword"/>
+            <Button text="Modifier le mot de passe" onAction="#handleChangePassword"
+                    styleClass="sidebar-button" prefHeight="40"/>
+        </VBox>
+
+
+
+        <Label fx:id="lblMessage" text="" visible="false" styleClass="info-label"/>
+    </VBox>
+</ScrollPane>
+

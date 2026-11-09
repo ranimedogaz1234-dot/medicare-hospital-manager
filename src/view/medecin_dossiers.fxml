@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?><?import javafx.scene.layout.*?>
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.MedecinDossiersController" spacing="14">
+ <HBox spacing="12" alignment="CENTER_LEFT"><Label text="Dossiers médicaux" styleClass="page-title"/><Region HBox.hgrow="ALWAYS"/><TextField fx:id="searchField" promptText="Rechercher un patient par nom" prefWidth="270"/><Button text="Actualiser" onAction="#refresh"/></HBox>
+ <Label fx:id="messageLabel" wrapText="true" styleClass="info-label"/>
+ <SplitPane dividerPositions="0.32" VBox.vgrow="ALWAYS">
+  <VBox spacing="10" minWidth="200"><Label text="Mes patients" styleClass="section-title"/>
+   <TableView fx:id="patientTable" VBox.vgrow="ALWAYS"><placeholder><Label text="Aucun patient correspondant." wrapText="true"/></placeholder><columns><TableColumn fx:id="patientNameColumn" text="Nom complet" prefWidth="180"/><TableColumn fx:id="patientPhoneColumn" text="Téléphone" prefWidth="120"/></columns></TableView>
+  </VBox>
+  <VBox spacing="12" minWidth="350"><Label fx:id="patientInfo" text="Sélectionnez un patient autorisé." wrapText="true" styleClass="section-title"/>
+   <HBox spacing="10"><Button fx:id="newRecordButton" text="Ajouter un diagnostic" onAction="#addRecord" disable="true" styleClass="action-button-primary"/><Button fx:id="editRecordButton" text="Modifier le dossier" onAction="#editRecord" disable="true"/></HBox>
+   <TableView fx:id="tableDossiers" prefHeight="240" VBox.vgrow="ALWAYS"><placeholder><Label text="Aucun dossier pour ce patient." wrapText="true"/></placeholder><columns><TableColumn fx:id="colDate" text="Date du diagnostic" prefWidth="120"/><TableColumn fx:id="colDisease" text="Maladie" prefWidth="160"/><TableColumn fx:id="colCategory" text="Catégorie" prefWidth="150"/><TableColumn fx:id="colDiagnostic" text="Diagnostic" prefWidth="200"/></columns></TableView>
+   <Label text="Consultation du dossier" styleClass="section-title"/><TextArea fx:id="recordDetails" editable="false" wrapText="true" prefRowCount="8" promptText="Sélectionnez un dossier."/>
+   <Label fx:id="lblTotal" text="Aucun dossier sélectionné." styleClass="info-label"/>
+  </VBox>
+ </SplitPane>
+</VBox>

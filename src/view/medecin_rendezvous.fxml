@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?><?import javafx.scene.layout.*?>
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.MedecinRdvController" spacing="14">
+ <HBox spacing="10" alignment="CENTER_LEFT"><Label text="Mes rendez-vous" styleClass="page-title"/><Region HBox.hgrow="ALWAYS"/><Button fx:id="newAppointmentButton" text="Nouveau rendez-vous" onAction="#addAppointment" styleClass="action-button-primary"/><Button text="Actualiser" onAction="#refresh"/></HBox>
+ <Label fx:id="messageLabel" wrapText="true" styleClass="info-label"/>
+ <HBox spacing="10"><Button fx:id="editButton" text="Modifier / reprogrammer" onAction="#editAppointment" disable="true"/><Button fx:id="cancelButton" text="Annuler le rendez-vous" onAction="#cancelAppointment" disable="true"/></HBox>
+ <TableView fx:id="tableRdv" VBox.vgrow="ALWAYS"><placeholder><Label text="Aucun rendez-vous. Ajoutez un créneau pour un patient de votre liste." wrapText="true"/></placeholder><columns><TableColumn fx:id="colDate" text="Date" prefWidth="120"/><TableColumn fx:id="colHeure" text="Heure" prefWidth="80"/><TableColumn fx:id="colPatient" text="Patient" prefWidth="200"/><TableColumn fx:id="colMotif" text="Motif" prefWidth="260"/><TableColumn fx:id="colStatut" text="Statut" prefWidth="120"/></columns></TableView>
+ <Label fx:id="lblTotal" text="Total : 0 rendez-vous" styleClass="info-label"/>
+</VBox>

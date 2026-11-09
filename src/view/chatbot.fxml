@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+fx:controller="application.controller.ChatbotController"
+      spacing="15" styleClass="page-container" alignment="CENTER">
+    <padding>
+        <Insets top="20" right="30" bottom="20" left="30"/>
+    </padding>
+
+    <Label text="Assistant MediBot" styleClass="page-title">
+        <font>
+            <Font name="System Bold" size="28"/>
+        </font>
+    </Label>
+
+    <Label text="Posez vos questions sur le systeme hospitalier" styleClass="page-subtitle"/>
+
+    <VBox styleClass="chat-container" VBox.vgrow="ALWAYS" maxWidth="800" maxHeight="600">
+        <padding>
+            <Insets top="15" right="15" bottom="15" left="15"/>
+        </padding>
+
+        <TextArea fx:id="chatArea" editable="false" wrapText="true" VBox.vgrow="ALWAYS"
+                  styleClass="chat-area" promptText="Bienvenue ! Je suis MediBot. Tapez 'aide' pour voir les commandes disponibles."/>
+
+        <HBox spacing="10" alignment="CENTER">
+            <padding>
+                <Insets top="10"/>
+            </padding>
+            <TextField fx:id="inputField" promptText="Tapez votre message ici..." HBox.hgrow="ALWAYS" prefHeight="40"
+                       styleClass="chat-input" onAction="#handleSend"/>
+            <Button text="Envoyer" onAction="#handleSend" styleClass="chat-send-button" prefHeight="40" prefWidth="100"/>
+        </HBox>
+    </VBox>
+
+    <HBox spacing="10" alignment="CENTER">
+        <Button text="RDV du jour" onAction="#quickRdv" styleClass="quick-button"/>
+        <Button text="Liste medecins" onAction="#quickMedecins" styleClass="quick-button"/>
+        <Button text="Medicaments" onAction="#quickMeds" styleClass="quick-button"/>
+        <Button text="Statistiques" onAction="#quickStats" styleClass="quick-button"/>
+        <Button text="Aide" onAction="#quickHelp" styleClass="quick-button"/>
+    </HBox>
+</VBox>

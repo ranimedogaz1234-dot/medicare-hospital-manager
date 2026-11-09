@@ -1,0 +1,407 @@
+/* MediCare HMS - Stylesheet Principal */
+
+/* Couleurs */
+.root {
+    -primary-color: #1a5276;
+    -primary-light: #2980b9;
+    -primary-dark: #154360;
+    -accent-color: #27ae60;
+    -accent-light: #2ecc71;
+    -danger-color: #e74c3c;
+    -warning-color: #f39c12;
+    -bg-color: #f5f6fa;
+    -card-bg: #ffffff;
+    -text-primary: #2c3e50;
+    -text-secondary: #7f8c8d;
+    -border-color: #dfe6e9;
+    -sidebar-bg: #1a5276;
+    -sidebar-hover: #154360;
+    -sidebar-active: #2980b9;
+}
+
+/* Login */
+.login-left-panel {
+    -fx-background-color: -primary-color;
+    -fx-text-fill: white;
+}
+
+.login-title {
+    -fx-text-fill: white;
+}
+
+.login-subtitle {
+    -fx-text-fill: #ecf0f1;
+}
+
+.login-feature {
+    -fx-text-fill: #bdc3c7;
+    -fx-font-size: 13px;
+}
+
+.login-version {
+    -fx-text-fill: #95a5a6;
+    -fx-font-size: 11px;
+}
+
+.login-right-panel {
+    -fx-background-color: -card-bg;
+}
+
+.login-form-title {
+    -fx-text-fill: -text-primary;
+}
+
+.login-form-subtitle {
+    -fx-text-fill: -text-secondary;
+    -fx-font-size: 13px;
+}
+
+.login-field {
+    -fx-background-color: #f8f9fa;
+    -fx-border-color: -border-color;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-padding: 10;
+    -fx-font-size: 14px;
+}
+
+.login-field:focused {
+    -fx-border-color: -primary-light;
+    -fx-background-color: white;
+}
+
+.login-button {
+    -fx-background-color: -primary-color;
+    -fx-text-fill: white;
+    -fx-background-radius: 5;
+    -fx-cursor: hand;
+}
+
+.login-button:hover {
+    -fx-background-color: -primary-dark;
+}
+
+.close-button-small {
+    -fx-background-color: -danger-color;
+    -fx-text-fill: white;
+    -fx-background-radius: 50%;
+    -fx-min-width: 30;
+    -fx-min-height: 30;
+    -fx-cursor: hand;
+}
+
+.form-label {
+    -fx-text-fill: -text-secondary;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+
+.error-label {
+    -fx-text-fill: -danger-color;
+    -fx-font-size: 12px;
+}
+
+.success-label { -fx-text-fill: -accent-color; -fx-font-size: 12px; }
+.registration-scroll, .registration-scroll > .viewport { -fx-background-color: white; }
+
+/* Sidebar */
+.sidebar {
+    -fx-background-color: -sidebar-bg;
+}
+
+.sidebar-logo {
+    -fx-text-fill: white;
+}
+
+.sidebar-logo-sub {
+    -fx-text-fill: #bdc3c7;
+}
+
+.sidebar-separator {
+    -fx-background-color: #34495e;
+    -fx-padding: 5 0;
+}
+
+.sidebar-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #bdc3c7;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 0 0 0 20;
+    -fx-background-radius: 5;
+    -fx-cursor: hand;
+    -fx-font-size: 14px;
+}
+
+.sidebar-button:hover {
+    -fx-background-color: -sidebar-hover;
+    -fx-text-fill: white;
+}
+
+.sidebar-button-active {
+    -fx-background-color: -sidebar-active;
+    -fx-text-fill: white;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 0 0 0 20;
+    -fx-background-radius: 5;
+    -fx-cursor: hand;
+    -fx-font-size: 14px;
+}
+
+.sidebar-button-logout {
+    -fx-background-color: -danger-color;
+    -fx-text-fill: white;
+    -fx-alignment: CENTER;
+    -fx-background-radius: 5;
+    -fx-cursor: hand;
+    -fx-font-size: 14px;
+}
+
+.sidebar-button-logout:hover {
+    -fx-background-color: #c0392b;
+}
+
+/* Main Content */
+.main-content {
+    -fx-background-color: -bg-color;
+}
+
+.page-container {
+    -fx-background-color: -bg-color;
+}
+
+.page-title {
+    -fx-text-fill: -text-primary;
+}
+
+.section-title {
+    -fx-text-fill: -text-primary;
+}
+
+.page-subtitle {
+    -fx-text-fill: -text-secondary;
+    -fx-font-size: 14px;
+}
+
+/* Stat Cards */
+.stat-card {
+    -fx-background-color: -card-bg;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
+    -fx-padding: 15;
+}
+
+.stat-label {
+    -fx-text-fill: -text-secondary;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+
+.stat-value {
+    -fx-text-fill: -primary-color;
+}
+
+/* Panel Cards */
+.panel-card {
+    -fx-background-color: -card-bg;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
+}
+
+.panel-title {
+    -fx-text-fill: -text-primary;
+}
+
+/* Tables */
+.table-view {
+    -fx-background-color: -card-bg;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
+    -fx-border-color: transparent;
+}
+
+.table-view .column-header {
+    -fx-background-color: -primary-color;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+    -fx-padding: 12 10;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: white;
+}
+
+.table-view .table-row-cell {
+    -fx-background-color: -card-bg;
+    -fx-border-color: transparent transparent -border-color transparent;
+    -fx-padding: 8 0;
+}
+
+.table-view .table-row-cell:odd {
+    -fx-background-color: #f8f9fa;
+}
+
+.table-view .table-row-cell:hover {
+    -fx-background-color: #e8f4f8;
+}
+
+.table-view .table-row-cell:selected {
+    -fx-background-color: -primary-light;
+}
+
+.table-view .table-row-cell:selected .text {
+    -fx-fill: white;
+}
+
+/* Buttons */
+.action-button-primary {
+    -fx-background-color: -accent-color;
+    -fx-text-fill: white;
+    -fx-background-radius: 5;
+    -fx-padding: 10 20;
+    -fx-cursor: hand;
+    -fx-font-weight: bold;
+}
+
+.action-button-primary:hover {
+    -fx-background-color: -accent-light;
+}
+
+.action-button-danger {
+    -fx-background-color: -danger-color;
+    -fx-text-fill: white;
+    -fx-background-radius: 5;
+    -fx-padding: 5 10;
+    -fx-cursor: hand;
+    -fx-font-size: 11px;
+}
+
+.action-button-danger:hover {
+    -fx-background-color: #c0392b;
+}
+
+.action-button-edit {
+    -fx-background-color: -warning-color;
+    -fx-text-fill: white;
+    -fx-background-radius: 5;
+    -fx-padding: 5 10;
+    -fx-cursor: hand;
+    -fx-font-size: 11px;
+}
+
+.action-button-edit:hover {
+    -fx-background-color: #d68910;
+}
+
+/* Search Field */
+.search-field {
+    -fx-background-color: -card-bg;
+    -fx-border-color: -border-color;
+    -fx-border-radius: 20;
+    -fx-background-radius: 20;
+    -fx-padding: 8 15;
+    -fx-font-size: 13px;
+}
+
+.search-field:focused {
+    -fx-border-color: -primary-light;
+}
+
+/* Date Picker */
+.date-picker {
+    -fx-background-color: -card-bg;
+    -fx-border-color: -border-color;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+}
+
+/* Info Label */
+.info-label {
+    -fx-text-fill: -text-secondary;
+    -fx-font-size: 12px;
+}
+
+/* Dialog */
+.dialog-title {
+    -fx-text-fill: -primary-color;
+}
+
+/* Chatbot */
+.chat-container {
+    -fx-background-color: -card-bg;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
+}
+
+.chat-area {
+    -fx-background-color: #f8f9fa;
+    -fx-background-radius: 5;
+    -fx-border-color: -border-color;
+    -fx-border-radius: 5;
+    -fx-font-size: 13px;
+    -fx-padding: 10;
+}
+
+.chat-input {
+    -fx-background-color: -card-bg;
+    -fx-border-color: -border-color;
+    -fx-border-radius: 20;
+    -fx-background-radius: 20;
+    -fx-padding: 8 15;
+    -fx-font-size: 13px;
+}
+
+.chat-send-button {
+    -fx-background-color: -primary-color;
+    -fx-text-fill: white;
+    -fx-background-radius: 20;
+    -fx-cursor: hand;
+    -fx-font-weight: bold;
+}
+
+.chat-send-button:hover {
+    -fx-background-color: -primary-dark;
+}
+
+.quick-button {
+    -fx-background-color: -primary-light;
+    -fx-text-fill: white;
+    -fx-background-radius: 15;
+    -fx-padding: 8 15;
+    -fx-cursor: hand;
+    -fx-font-size: 12px;
+}
+
+.quick-button:hover {
+    -fx-background-color: -primary-color;
+}
+
+/* Scrollbar */
+.scroll-bar:vertical {
+    -fx-background-color: transparent;
+    -fx-pref-width: 8;
+}
+
+.scroll-bar:vertical .thumb {
+    -fx-background-color: #bdc3c7;
+    -fx-background-radius: 4;
+}
+
+.scroll-bar:vertical .thumb:hover {
+    -fx-background-color: #95a5a6;
+}
+
+/* Espace médical : statistiques réelles et graphiques JavaFX. */
+.medical-dashboard-scroll, .medical-dashboard-scroll > .viewport { -fx-background-color: transparent; }
+.medical-dashboard-scroll .page-title { -fx-font-size: 25px; -fx-font-weight: bold; }
+.medical-chart-card .section-title { -fx-font-size: 14px; -fx-font-weight: bold; }
+.medical-stat-card, .medical-chart-card { -fx-background-color: white; -fx-background-radius: 14; -fx-border-radius: 14; -fx-border-color: #e4edf4; -fx-padding: 18; }
+.medical-stat-card { -fx-effect: dropshadow(gaussian, rgba(26,82,118,0.07), 12, 0, 0, 3); }
+.medical-stat-icon { -fx-background-color: #eaf4fb; -fx-text-fill: #1a5276; -fx-background-radius: 30; -fx-min-width: 36; -fx-min-height: 36; -fx-alignment: center; -fx-font-size: 21px; }
+.medical-stat-title { -fx-text-fill: #526577; -fx-font-size: 13px; -fx-font-weight: bold; }
+.medical-stat-value { -fx-text-fill: #154360; -fx-font-size: 32px; -fx-font-weight: bold; }
+.medical-muted { -fx-text-fill: #657b8c; -fx-font-size: 12px; }
+.medical-donut-total { -fx-text-fill: #154360; -fx-font-size: 26px; -fx-font-weight: bold; }
+.medical-chart-card .chart-plot-background { -fx-background-color: #f8fbfd; }
+.medical-chart-card .default-color0.chart-bar { -fx-bar-fill: #2980b9; }
+.medical-chart-card .chart-vertical-grid-lines, .medical-chart-card .chart-horizontal-grid-lines { -fx-stroke: #e5edf3; }

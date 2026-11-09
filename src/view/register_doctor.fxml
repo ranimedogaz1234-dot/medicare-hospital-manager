@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<HBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.DoctorRegistrationController" prefWidth="900" prefHeight="600">
+    <VBox prefWidth="400" minWidth="400" alignment="CENTER" spacing="20" styleClass="login-left-panel">
+        <padding><Insets top="40" right="40" bottom="40" left="40"/></padding>
+        <Label text="MediCare HMS" styleClass="login-title"><font><Font name="System Bold" size="36"/></font></Label>
+        <Label text="Espace professionnel des médecins" styleClass="login-subtitle" wrapText="true" textAlignment="CENTER"/>
+        <Separator prefWidth="200"/>
+        <Label text="Compte médecin uniquement" styleClass="login-feature"/>
+        <Label text="Connexion immédiate après inscription" styleClass="login-feature" wrapText="true" textAlignment="CENTER"/>
+        <Label text="Aucun compte patient" styleClass="login-feature"/>
+    </VBox>
+    <ScrollPane fitToWidth="true" hbarPolicy="NEVER" prefWidth="500" styleClass="registration-scroll" HBox.hgrow="ALWAYS">
+        <VBox alignment="TOP_CENTER" spacing="12" styleClass="login-right-panel">
+            <padding><Insets top="24" right="45" bottom="24" left="45"/></padding>
+            <Label text="Créer un compte médecin" styleClass="login-form-title"><font><Font name="System Bold" size="24"/></font></Label>
+            <Label text="Inscription à l'espace médecin" styleClass="login-form-subtitle" wrapText="true"/>
+            <VBox fx:id="fieldsBox" spacing="8" maxWidth="350">
+                <Label text="Prénom et nom *" labelFor="$fullNameField" styleClass="form-label"/>
+                <TextField fx:id="fullNameField" promptText="Prénom et nom" styleClass="login-field"/>
+                <Label text="Adresse email de connexion *" labelFor="$emailField" styleClass="form-label"/>
+                <TextField fx:id="emailField" promptText="medecin@example.com" styleClass="login-field"/>
+                <Label text="Spécialité médicale *" labelFor="$specialtyField" styleClass="form-label"/>
+                <ComboBox fx:id="specialtyField" editable="true" promptText="Choisir ou saisir une spécialité" maxWidth="Infinity" styleClass="login-field"/>
+                <Label text="Mot de passe *" labelFor="$passwordField" styleClass="form-label"/>
+                <PasswordField fx:id="passwordField" promptText="12 à 128 caractères" styleClass="login-field"/>
+                <Label text="Confirmer le mot de passe *" labelFor="$confirmPasswordField" styleClass="form-label"/>
+                <PasswordField fx:id="confirmPasswordField" promptText="Saisir à nouveau le mot de passe" styleClass="login-field"/>
+            </VBox>
+            <Label text="Utilisez une phrase de passe unique. Vos qualifications médicales ne sont pas vérifiées par cette inscription." maxWidth="350" wrapText="true" styleClass="login-form-subtitle"/>
+            <Label fx:id="messageLabel" visible="false" wrapText="true" maxWidth="350" styleClass="error-label"/>
+            <Button fx:id="registerButton" text="Créer mon compte médecin" onAction="#register" styleClass="login-button" prefWidth="350" prefHeight="45" defaultButton="true"/>
+            <Hyperlink fx:id="backLink" text="Retour à la connexion / Sign In" onAction="#backToLogin"/>
+        </VBox>
+    </ScrollPane>
+</HBox>

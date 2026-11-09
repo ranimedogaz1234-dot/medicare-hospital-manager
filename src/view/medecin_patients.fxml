@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+fx:controller="application.controller.MedecinPatientsController"
+      spacing="15" VBox.vgrow="ALWAYS">
+
+    <HBox spacing="15" alignment="CENTER_LEFT">
+        <Label text="Liste de mes Patients" styleClass="page-title"><font><Font name="System Bold" size="28"/></font></Label>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button fx:id="btnNewPatient" text="Ajouter un patient" onAction="#handleNewPatient" styleClass="action-button-primary"/>
+    </HBox>
+    <Label fx:id="lblMessage" visible="false" managed="false" wrapText="true"/>
+
+    <TableView fx:id="tablePatients" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn text="ID" prefWidth="50" fx:id="colId"/>
+            <TableColumn text="Nom" prefWidth="150" fx:id="colNom"/>
+            <TableColumn text="Prenom" prefWidth="150" fx:id="colPrenom"/>
+            <TableColumn text="Telephone" prefWidth="150" fx:id="colTelephone"/>
+            <TableColumn text="Groupe sanguin" prefWidth="120" fx:id="colGroupeSanguin"/>
+            <TableColumn text="Actions" prefWidth="120" fx:id="colActions"/>
+        </columns>
+    </TableView>
+
+    <Label fx:id="lblTotal" text="Total: 0 patients" styleClass="info-label"/>
+</VBox>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<DialogPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+fx:controller="application.controller.PatientConsultDialogController"
+            prefWidth="650" prefHeight="500">
+    <content>
+        <VBox spacing="15">
+            <padding><Insets top="10" right="20" bottom="10" left="20"/></padding>
+
+            <Label text="Informations du patient" styleClass="dialog-title">
+                <font><Font name="System Bold" size="16"/></font>
+            </Label>
+
+            <GridPane hgap="20" vgap="8">
+                <columnConstraints>
+                    <ColumnConstraints minWidth="130"/>
+                    <ColumnConstraints hgrow="ALWAYS"/>
+                    <ColumnConstraints minWidth="130"/>
+                    <ColumnConstraints hgrow="ALWAYS"/>
+                </columnConstraints>
+                <Label text="Nom complet:" GridPane.columnIndex="0" GridPane.rowIndex="0" styleClass="form-label"/>
+                <Label fx:id="lblNomComplet" text="-" GridPane.columnIndex="1" GridPane.rowIndex="0" GridPane.columnSpan="3"/>
+                <Label text="Date naissance:" GridPane.columnIndex="0" GridPane.rowIndex="1" styleClass="form-label"/>
+                <Label fx:id="lblDateNaissance" text="-" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                <Label text="Sexe:" GridPane.columnIndex="2" GridPane.rowIndex="1" styleClass="form-label"/>
+                <Label fx:id="lblSexe" text="-" GridPane.columnIndex="3" GridPane.rowIndex="1"/>
+                <Label text="Telephone:" GridPane.columnIndex="0" GridPane.rowIndex="2" styleClass="form-label"/>
+                <Label fx:id="lblTelephone" text="-" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                <Label text="Email:" GridPane.columnIndex="2" GridPane.rowIndex="2" styleClass="form-label"/>
+                <Label fx:id="lblEmail" text="-" GridPane.columnIndex="3" GridPane.rowIndex="2"/>
+                <Label text="Adresse:" GridPane.columnIndex="0" GridPane.rowIndex="3" styleClass="form-label"/>
+                <Label fx:id="lblAdresse" text="-" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.columnSpan="3" wrapText="true"/>
+                <Label text="Groupe sanguin:" GridPane.columnIndex="0" GridPane.rowIndex="4" styleClass="form-label"/>
+                <Label fx:id="lblGroupeSanguin" text="-" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+                <Label text="Allergies:" GridPane.columnIndex="2" GridPane.rowIndex="4" styleClass="form-label"/>
+                <Label fx:id="lblAllergies" text="-" GridPane.columnIndex="3" GridPane.rowIndex="4" wrapText="true"/>
+                <Label text="Inscription:" GridPane.columnIndex="0" GridPane.rowIndex="5" styleClass="form-label"/>
+                <Label fx:id="lblDateInscription" text="-" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+            </GridPane>
+
+            <Separator/>
+            <Label text="Dossiers medicaux (ce medecin)" styleClass="section-title">
+                <font><Font name="System Bold" size="14"/></font>
+            </Label>
+            <TableView fx:id="tableDossiers" prefHeight="180">
+                <columns>
+                    <TableColumn text="Date" prefWidth="100" fx:id="colDate"/>
+                    <TableColumn text="Diagnostic" prefWidth="220" fx:id="colDiagnostic"/>
+                    <TableColumn text="Traitement" prefWidth="220" fx:id="colTraitement"/>
+                </columns>
+            </TableView>
+        </VBox>
+    </content>
+    <buttonTypes>
+        <ButtonType text="Fermer" buttonData="CANCEL_CLOSE"/>
+    </buttonTypes>
+</DialogPane>

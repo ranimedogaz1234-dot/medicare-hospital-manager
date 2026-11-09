@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<StackPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+fx:controller="application.controller.LoginController"
+           prefWidth="900" prefHeight="600">
+
+    <HBox>
+        <!-- Panneau gauche - Image/Branding -->
+        <VBox prefWidth="400" styleClass="login-left-panel" alignment="CENTER" spacing="20">
+            <padding>
+                <Insets top="40" right="40" bottom="40" left="40"/>
+            </padding>
+            <Label text="MediCare HMS" styleClass="login-title">
+                <font>
+                    <Font name="System Bold" size="36"/>
+                </font>
+            </Label>
+            <Label text="Systeme de Gestion Hospitaliere" styleClass="login-subtitle" wrapText="true" textAlignment="CENTER">
+                <font>
+                    <Font size="16"/>
+                </font>
+            </Label>
+            <Separator prefWidth="200"/>
+            <VBox spacing="10" alignment="CENTER">
+                <Label text="Gestion des Patients" styleClass="login-feature"/>
+                <Label text="Rendez-vous &amp; Dossiers Medicaux" styleClass="login-feature"/>
+                <Label text="Pharmacie &amp; Chatbot Intelligent" styleClass="login-feature"/>
+            </VBox>
+            <Region VBox.vgrow="ALWAYS"/>
+            <Label text="Version 1.0 - 2025/2026" styleClass="login-version"/>
+        </VBox>
+
+        <!-- Panneau droit - Formulaire -->
+        <VBox prefWidth="500" alignment="CENTER" spacing="18" styleClass="login-right-panel">
+            <padding>
+                <Insets top="40" right="60" bottom="40" left="60"/>
+            </padding>
+
+            <Label text="Connexion" styleClass="login-form-title">
+                <font>
+                    <Font name="System Bold" size="28"/>
+                </font>
+            </Label>
+
+            <Label text="Veuillez entrer vos identifiants" styleClass="login-form-subtitle"/>
+
+            <VBox spacing="15" maxWidth="350">
+                <Label text="Adresse email" styleClass="form-label"/>
+                <TextField fx:id="emailField" promptText="Adresse email" styleClass="login-field"/>
+
+                <Label text="Mot de passe" styleClass="form-label"/>
+                <PasswordField fx:id="passwordField" promptText="Mot de passe" styleClass="login-field"/>
+            </VBox>
+
+            <Label fx:id="errorLabel" text="" styleClass="error-label" visible="false" wrapText="true" maxWidth="350"/>
+
+            <Button fx:id="loginButton" text="Se Connecter" onAction="#handleLogin"
+                    prefWidth="350" prefHeight="45" styleClass="login-button" defaultButton="true">
+                <font>
+                    <Font name="System Bold" size="14"/>
+                </font>
+            </Button>
+
+            <Region VBox.vgrow="ALWAYS"/>
+
+            <Hyperlink fx:id="signUpLink" text="Créer un compte médecin / Sign Up" onAction="#showRegistration"/>
+            <HBox alignment="CENTER" spacing="5">
+                <Button text="x" onAction="#closeApp" styleClass="close-button-small"/>
+            </HBox>
+        </VBox>
+    </HBox>
+</StackPane>

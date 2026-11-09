@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+fx:controller="application.controller.PatientController"
+      spacing="15" styleClass="page-container">
+    <padding>
+        <Insets top="20" right="30" bottom="20" left="30"/>
+    </padding>
+
+    <HBox alignment="CENTER_LEFT" spacing="15">
+        <Label text="Gestion des Patients" styleClass="page-title">
+            <font>
+                <Font name="System Bold" size="28"/>
+            </font>
+        </Label>
+        <Region HBox.hgrow="ALWAYS"/>
+        <TextField fx:id="searchField" promptText="Rechercher un patient..." prefWidth="250" styleClass="search-field"/>
+        <Button text="Nouveau Patient" onAction="#handleNewPatient" styleClass="action-button-primary" prefHeight="40"/>
+    </HBox>
+
+    <TableView fx:id="tablePatients" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn text="ID" prefWidth="50" fx:id="colId"/>
+            <TableColumn text="Nom" prefWidth="120" fx:id="colNom"/>
+            <TableColumn text="Prenom" prefWidth="120" fx:id="colPrenom"/>
+            <TableColumn text="Date Naiss." prefWidth="100" fx:id="colDateNaissance"/>
+            <TableColumn text="Sexe" prefWidth="70" fx:id="colSexe"/>
+            <TableColumn text="Telephone" prefWidth="120" fx:id="colTelephone"/>
+            <TableColumn text="Email" prefWidth="180" fx:id="colEmail"/>
+            <TableColumn text="Groupe Sanguin" prefWidth="100" fx:id="colGroupeSanguin"/>
+            <TableColumn text="Actions" prefWidth="150" fx:id="colActions"/>
+        </columns>
+    </TableView>
+
+    <Label fx:id="lblTotal" text="Total: 0 patients" styleClass="info-label"/>
+</VBox>

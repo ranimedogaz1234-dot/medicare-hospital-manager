@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<DialogPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+fx:controller="application.controller.PatientDialogController"
+            prefWidth="500">
+    <header>
+        <Label text="Patient" fx:id="dialogTitle" styleClass="dialog-title">
+            <font>
+                <Font name="System Bold" size="18"/>
+            </font>
+            <padding>
+                <Insets top="15" right="20" bottom="10" left="20"/>
+            </padding>
+        </Label>
+    </header>
+    <content>
+        <GridPane vgap="10" hgap="15">
+            <padding>
+                <Insets top="10" right="20" bottom="10" left="20"/>
+            </padding>
+            <columnConstraints>
+                <ColumnConstraints minWidth="100" prefWidth="120"/>
+                <ColumnConstraints hgrow="ALWAYS"/>
+            </columnConstraints>
+
+            <Label text="Nom:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtNom" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+            <Label text="Prenom:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtPrenom" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+            <Label text="Date Naissance:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+            <DatePicker fx:id="dpDateNaissance" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+            <Label text="Sexe:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+            <ComboBox fx:id="cbSexe" GridPane.rowIndex="3" GridPane.columnIndex="1" prefWidth="150"/>
+
+            <Label text="Telephone:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtTelephone" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+
+            <Label text="Email:" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtEmail" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+
+            <Label text="Adresse:" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtAdresse" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
+
+            <Label text="Groupe Sanguin:" GridPane.rowIndex="7" GridPane.columnIndex="0"/>
+            <ComboBox fx:id="cbGroupeSanguin" GridPane.rowIndex="7" GridPane.columnIndex="1" prefWidth="150"/>
+
+            <Label text="Allergies:" GridPane.rowIndex="8" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtAllergies" GridPane.rowIndex="8" GridPane.columnIndex="1" promptText="Aucune"/>
+            <Label fx:id="errorLabel" visible="false" managed="false" wrapText="true" maxWidth="420" styleClass="error-label" GridPane.rowIndex="9" GridPane.columnIndex="0" GridPane.columnSpan="2"/>
+        </GridPane>
+    </content>
+    <buttonTypes>
+        <ButtonType text="Enregistrer" buttonData="OK_DONE"/>
+        <ButtonType text="Annuler" buttonData="CANCEL_CLOSE"/>
+    </buttonTypes>
+</DialogPane>

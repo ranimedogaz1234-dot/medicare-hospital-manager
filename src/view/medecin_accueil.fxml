@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?><?import javafx.scene.layout.*?><?import javafx.scene.chart.*?><?import javafx.scene.shape.*?><?import javafx.geometry.*?>
+<ScrollPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.MedecinAccueilController" fitToWidth="true" hbarPolicy="NEVER" styleClass="medical-dashboard-scroll">
+<content><VBox fx:id="dashboardRoot" spacing="18">
+ <HBox alignment="CENTER_LEFT" spacing="15"><VBox spacing="6"><Label text="Tableau de bord médical" styleClass="page-title"/><Label text="Votre activité, vos patients, vos consultations" styleClass="medical-muted"/></VBox><Region HBox.hgrow="ALWAYS"/><Button text="Actualiser" onAction="#refresh"/></HBox>
+ <Label fx:id="loadMessage" text="Chargement des données…" styleClass="medical-muted" wrapText="true"/>
+ <TilePane fx:id="statsGrid" prefColumns="3" hgap="14" vgap="14" prefTileWidth="250" prefTileHeight="145"><VBox styleClass="medical-stat-card" spacing="7" prefWidth="250"><HBox spacing="12" alignment="CENTER_LEFT"><Label text="✚" styleClass="medical-stat-icon"/><Label text="Patients" styleClass="medical-stat-title"/></HBox><Label fx:id="lblPatients" text="—" styleClass="medical-stat-value"/><Label text="Profils autorisés" styleClass="medical-muted"/></VBox>
+<VBox styleClass="medical-stat-card" spacing="7" prefWidth="250"><HBox spacing="12" alignment="CENTER_LEFT"><Label text="▦" styleClass="medical-stat-icon"/><Label text="Rendez-vous" styleClass="medical-stat-title"/></HBox><Label fx:id="lblRdvTotal" text="—" styleClass="medical-stat-value"/><Label text="Tous statuts" styleClass="medical-muted"/></VBox>
+<VBox styleClass="medical-stat-card" spacing="7" prefWidth="250"><HBox spacing="12" alignment="CENTER_LEFT"><Label text="◷" styleClass="medical-stat-icon"/><Label text="Aujourd’hui" styleClass="medical-stat-title"/></HBox><Label fx:id="lblRdvToday" text="—" styleClass="medical-stat-value"/><Label text="Hors annulations" styleClass="medical-muted"/></VBox>
+<VBox styleClass="medical-stat-card" spacing="7" prefWidth="250"><HBox spacing="12" alignment="CENTER_LEFT"><Label text="✓" styleClass="medical-stat-icon"/><Label text="Terminés" styleClass="medical-stat-title"/></HBox><Label fx:id="lblCompleted" text="—" styleClass="medical-stat-value"/><Label text="Consultations terminées" styleClass="medical-muted"/></VBox>
+<VBox styleClass="medical-stat-card" spacing="7" prefWidth="250"><HBox spacing="12" alignment="CENTER_LEFT"><Label text="×" styleClass="medical-stat-icon"/><Label text="Annulés" styleClass="medical-stat-title"/></HBox><Label fx:id="lblCancelled" text="—" styleClass="medical-stat-value"/><Label text="Historique conservé" styleClass="medical-muted"/></VBox>
+<VBox styleClass="medical-stat-card" spacing="7" prefWidth="250"><HBox spacing="12" alignment="CENTER_LEFT"><Label text="▤" styleClass="medical-stat-icon"/><Label text="Dossiers médicaux" styleClass="medical-stat-title"/></HBox><Label fx:id="lblDossiers" text="—" styleClass="medical-stat-value"/><Label text="Vos consultations" styleClass="medical-muted"/></VBox></TilePane>
+ <TilePane fx:id="chartsGrid" prefColumns="2" prefTileWidth="390" prefTileHeight="460" hgap="14" vgap="14">
+  <VBox styleClass="medical-chart-card" spacing="8" prefWidth="390"><Label text="Répartition des rendez-vous" styleClass="section-title"/>
+   <Label fx:id="statusEmpty" text="Aucun rendez-vous enregistré." styleClass="medical-muted" wrapText="true"/>
+   <StackPane prefHeight="240" VBox.vgrow="ALWAYS"><PieChart fx:id="statusChart" labelsVisible="false" legendVisible="false" minWidth="250" prefHeight="240"/><Circle radius="70" fill="WHITE" mouseTransparent="true"/><VBox alignment="CENTER" mouseTransparent="true"><Label fx:id="statusTotal" text="—" styleClass="medical-donut-total"/><Label text="rendez-vous" styleClass="medical-muted"/></VBox></StackPane>
+   <Label fx:id="statusLegend" wrapText="true" styleClass="medical-muted"/>
+  </VBox>
+  <VBox styleClass="medical-chart-card" spacing="8" prefWidth="390"><Label text="Diagnostics par catégorie" styleClass="section-title"/>
+   <Label fx:id="conditionEmpty" text="Aucun diagnostic enregistré." wrapText="true" styleClass="medical-muted"/>
+   <PieChart fx:id="conditionChart" labelsVisible="false" legendVisible="false" prefHeight="235" minWidth="250" VBox.vgrow="ALWAYS"/>
+   <FlowPane fx:id="conditionLegend" hgap="10" vgap="5"/>
+   <Label text="Les parts comptent les dossiers, pas les patients uniques. Catégorie renseignée par le médecin ; aucune déduction automatique." wrapText="true" styleClass="medical-muted"/>
+  </VBox>
+ </TilePane>
+ <VBox styleClass="medical-chart-card" spacing="8"><Label text="Rendez-vous par mois" styleClass="section-title"/><Label fx:id="monthRange" styleClass="medical-muted" wrapText="true"/><Label fx:id="monthEmpty" text="Aucun rendez-vous dans cette période." styleClass="medical-muted"/>
+  <BarChart fx:id="monthChart" legendVisible="false" prefHeight="260"><xAxis><CategoryAxis label="Mois" tickLabelRotation="-25"/></xAxis><yAxis><NumberAxis label="Nombre de rendez-vous" tickUnit="1" minorTickVisible="false" forceZeroInRange="true"/></yAxis></BarChart>
+ </VBox>
+ <VBox styleClass="medical-chart-card" spacing="10"><Label text="Prochains rendez-vous" styleClass="section-title"/><TableView fx:id="tableRdvProchains" prefHeight="215"><placeholder><Label text="Aucun rendez-vous à venir."/></placeholder><columns><TableColumn fx:id="colDate" text="Date" prefWidth="110"/><TableColumn fx:id="colHeure" text="Heure" prefWidth="80"/><TableColumn fx:id="colPatient" text="Patient" prefWidth="200"/><TableColumn fx:id="colMotif" text="Motif" prefWidth="250"/><TableColumn fx:id="colStatut" text="Statut" prefWidth="115"/></columns></TableView></VBox>
+</VBox></content>
+</ScrollPane>

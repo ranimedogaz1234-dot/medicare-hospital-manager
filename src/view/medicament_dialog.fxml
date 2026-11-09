@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<DialogPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+fx:controller="application.controller.MedicamentDialogController"
+            prefWidth="450">
+    <header>
+        <Label text="Medicament" fx:id="dialogTitle" styleClass="dialog-title">
+            <font>
+                <Font name="System Bold" size="18"/>
+            </font>
+            <padding>
+                <Insets top="15" right="20" bottom="10" left="20"/>
+            </padding>
+        </Label>
+    </header>
+    <content>
+        <GridPane vgap="10" hgap="15">
+            <padding>
+                <Insets top="10" right="20" bottom="10" left="20"/>
+            </padding>
+            <columnConstraints>
+                <ColumnConstraints minWidth="100" prefWidth="120"/>
+                <ColumnConstraints hgrow="ALWAYS"/>
+            </columnConstraints>
+
+            <Label text="Nom:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtNom" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+            <Label text="Dosage:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtDosage" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+            <Label text="Indications:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtIndications" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+            <Label text="Stock:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+            <Spinner fx:id="spStock" GridPane.rowIndex="3" GridPane.columnIndex="1" prefWidth="150"/>
+
+            <Label text="Prix (DT):" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtPrix" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+        </GridPane>
+    </content>
+    <buttonTypes>
+        <ButtonType text="Enregistrer" buttonData="OK_DONE"/>
+        <ButtonType text="Annuler" buttonData="CANCEL_CLOSE"/>
+    </buttonTypes>
+</DialogPane>

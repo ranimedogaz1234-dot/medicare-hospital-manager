@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?><?import javafx.scene.layout.*?><?import javafx.geometry.*?>
+<DialogPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.MedicalRecordFormController" prefWidth="720">
+ <header><VBox spacing="8"><padding><Insets top="16" right="20" bottom="8" left="20"/></padding><Label text="Dossier médical" styleClass="dialog-title"/><Label fx:id="patientLabel" wrapText="true"/></VBox></header>
+ <content><VBox spacing="10"><ScrollPane fitToWidth="true" prefViewportHeight="490"><content><GridPane vgap="10" hgap="14"><padding><Insets top="8" right="20" bottom="8" left="20"/></padding><columnConstraints><ColumnConstraints prefWidth="155"/><ColumnConstraints hgrow="ALWAYS"/></columnConstraints>
+  <Label text="Maladie" GridPane.rowIndex="0"/><TextField fx:id="diseaseField" promptText="Maladie ou affection diagnostiquée" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+  <Label text="Catégorie" GridPane.rowIndex="1"/><ComboBox fx:id="categoryField" maxWidth="Infinity" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+  <Label text="Date du diagnostic" GridPane.rowIndex="2"/><DatePicker fx:id="diagnosisDate" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+  <Label text="Antécédents médicaux" wrapText="true" GridPane.rowIndex="3"/><TextArea fx:id="historyField" wrapText="true" prefRowCount="3" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+  <Label text="Diagnostic détaillé" GridPane.rowIndex="4"/><TextArea fx:id="diagnosisField" wrapText="true" prefRowCount="3" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+  <Label text="Traitement" GridPane.rowIndex="5"/><TextArea fx:id="treatmentField" wrapText="true" prefRowCount="3" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+  <Label text="Notes médicales" GridPane.rowIndex="6"/><TextArea fx:id="notesField" wrapText="true" prefRowCount="3" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
+ </GridPane></content></ScrollPane><Label fx:id="errorLabel" visible="false" managed="false" wrapText="true" maxWidth="650" styleClass="error-label"/></VBox></content>
+ <buttonTypes><ButtonType text="Enregistrer" buttonData="OK_DONE"/><ButtonType text="Annuler" buttonData="CANCEL_CLOSE"/></buttonTypes>
+</DialogPane>

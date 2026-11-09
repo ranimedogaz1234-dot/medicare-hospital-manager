@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+fx:controller="application.controller.MedecinDashboardController"
+            prefWidth="1200" prefHeight="800">
+
+    <left>
+        <VBox prefWidth="250" styleClass="sidebar" spacing="5">
+            <padding>
+                <Insets top="20" right="15" bottom="20" left="15"/>
+            </padding>
+
+            <VBox alignment="CENTER" spacing="5">
+                <Label text="MediCare" styleClass="sidebar-logo">
+                    <font><Font name="System Bold" size="24"/></font>
+                </Label>
+                <Label text="Espace médecin" styleClass="sidebar-logo-sub">
+                    <font><Font size="12"/></font>
+                </Label>
+            </VBox>
+
+            <Separator styleClass="sidebar-separator"/>
+
+            <VBox spacing="8" alignment="CENTER_LEFT">
+                <Label fx:id="lblMedecinNom" text="Dr. ..." styleClass="sidebar-logo" wrapText="true">
+                    <font><Font name="System Bold" size="14"/></font>
+                </Label>
+                <Label fx:id="lblSpecialite" text="Specialite" styleClass="sidebar-logo-sub"/>
+            </VBox>
+
+            <Separator styleClass="sidebar-separator"/>
+
+            <VBox spacing="5">
+                <Button fx:id="btnAccueil" text="Tableau de bord" onAction="#showAccueil"
+                        styleClass="sidebar-button-active" prefWidth="220" prefHeight="45"/>
+                <Button fx:id="btnRendezVous" text="Mes rendez-vous" onAction="#showRendezVous"
+                        styleClass="sidebar-button" prefWidth="220" prefHeight="45"/>
+                <Button fx:id="btnDossiers" text="Dossiers médicaux" onAction="#showDossiers"
+                        styleClass="sidebar-button" prefWidth="220" prefHeight="45"/>
+                <Button fx:id="btnPatients" text="Mes patients" onAction="#showPatients"
+                        styleClass="sidebar-button" prefWidth="220" prefHeight="45"/>
+                <Button fx:id="btnProfil" text="Mon Profil" onAction="#showProfil"
+                        styleClass="sidebar-button" prefWidth="220" prefHeight="45"/>
+
+                <Button fx:id="btnChatbot" text="Assistant MediBot" onAction="#showChatbot"
+                        styleClass="sidebar-button" prefWidth="220" prefHeight="45"/>
+            </VBox>
+
+
+            <Region VBox.vgrow="ALWAYS"/>
+            <Separator styleClass="sidebar-separator"/>
+            <Button text="Déconnexion" onAction="#handleLogout"
+                    styleClass="sidebar-button-logout" prefWidth="220" prefHeight="40"/>
+        </VBox>
+    </left>
+
+    <center>
+        <StackPane fx:id="contentPane" styleClass="main-content">
+            <padding>
+                <Insets top="20" right="30" bottom="20" left="30"/>
+            </padding>
+        </StackPane>
+    </center>
+</BorderPane>
+
