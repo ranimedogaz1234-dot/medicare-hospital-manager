@@ -17,6 +17,10 @@ A JavaFX desktop application that demonstrates how doctors can manage patients, 
 
 Java, JavaFX and FXML, Maven, MySQL, and JDBC. Passwords use salted PBKDF2-HMAC-SHA256. No external AI service or API key is required.
 
+## Screenshot
+
+![Dashboard with synthetic appointment and clinical statistics](docs/dashboard.png)
+
 ## Run locally
 
 1. Install a patched JDK 25, Maven, and MySQL. Set `JAVA_HOME` to the JDK.
@@ -41,4 +45,3 @@ For the optional administrator workspace, run `java -cp $cp application.tools.Cr
 The local regression suite covered registration, login, patient creation, record ownership, appointments, dashboards, and administrator workflows. All 23 FXML views loaded. See the [testing report](TESTING_REPORT.md) and [security review](PUBLIC_RELEASE_SECURITY_REPORT.md) for scope and limitations.
 
 Self-registration does not verify email ownership or medical credentials. The desktop application connects directly to MySQL; anyone who controls the workstation or its shared database credentials can bypass client-side access checks. Real clinical use requires a server-side authorization boundary, verified identities, and a separate security review. Keep credentials and database records outside Git.
-

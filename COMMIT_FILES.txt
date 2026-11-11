@@ -1,12 +1,12 @@
 .env.example
 .gitignore
 COMMIT_FILES.txt
+docs/dashboard.png
 FINAL_REVIEW.md
 GITHUB_PREPARATION.md
+pom.xml
 PUBLIC_RELEASE_SECURITY_REPORT.md
 README.md
-TESTING_REPORT.md
-pom.xml
 src/application/App.java
 src/application/chatbot/HospitalChatbot.java
 src/application/controller/AppointmentFormController.java
@@ -53,8 +53,8 @@ src/application/tools/InitializeClinicalWorkspace.java
 src/application/tools/InitializeDatabase.java
 src/application/tools/InitializePatientAssignments.java
 src/application/util/AppointmentRules.java
-src/application/util/DataChanges.java
 src/application/util/DatabaseUtil.java
+src/application/util/DataChanges.java
 src/application/util/FrenchDateFields.java
 src/application/util/PasswordUtil.java
 src/application/util/RecordAccess.java
@@ -83,3 +83,4 @@ src/view/patients.fxml
 src/view/rdv_dialog.fxml
 src/view/register_doctor.fxml
 src/view/rendezvous.fxml
+TESTING_REPORT.md
