@@ -6,10 +6,12 @@
     <dependency><groupId>org.openjfx</groupId><artifactId>javafx-controls</artifactId><version>25.0.5</version></dependency>
     <dependency><groupId>org.openjfx</groupId><artifactId>javafx-fxml</artifactId><version>25.0.5</version></dependency>
     <dependency><groupId>com.mysql</groupId><artifactId>mysql-connector-j</artifactId><version>26.10.0</version></dependency>
+    <dependency><groupId>org.junit.jupiter</groupId><artifactId>junit-jupiter</artifactId><version>5.11.4</version><scope>test</scope></dependency>
   </dependencies>
-  <build><sourceDirectory>src</sourceDirectory><resources><resource><directory>src</directory><excludes><exclude>**/*.java</exclude></excludes></resource></resources>
+  <build><sourceDirectory>src</sourceDirectory><testSourceDirectory>test</testSourceDirectory><resources><resource><directory>src</directory><excludes><exclude>**/*.java</exclude></excludes></resource></resources>
     <plugins>
       <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-compiler-plugin</artifactId><version>3.14.1</version></plugin>
+      <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-surefire-plugin</artifactId><version>3.5.2</version></plugin>
       <plugin><groupId>org.openjfx</groupId><artifactId>javafx-maven-plugin</artifactId><version>0.0.8</version><configuration><mainClass>application.App</mainClass></configuration></plugin>
     </plugins>
   </build>
