@@ -1,5 +1,7 @@
 # MediCare Hospital Manager
 
+[![CI](https://github.com/ranimedogaz1234-dot/medicare-hospital-manager/actions/workflows/ci.yml/badge.svg)](https://github.com/ranimedogaz1234-dot/medicare-hospital-manager/actions/workflows/ci.yml)
+
 A JavaFX desktop application that demonstrates how doctors can manage patients, appointments, and medical records in a MySQL-backed workspace.
 
 **Academic demonstration using synthetic data only. This is not a production-ready medical system.** The interface is in French.
@@ -15,7 +17,7 @@ A JavaFX desktop application that demonstrates how doctors can manage patients, 
 
 ## Technology
 
-Java, JavaFX and FXML, Maven, MySQL, and JDBC. Passwords use salted PBKDF2-HMAC-SHA256. No external AI service or API key is required.
+Java, JavaFX and FXML, Maven, MySQL, JDBC, and JUnit 5. Passwords use salted PBKDF2-HMAC-SHA256. No external AI service or API key is required.
 
 ## Screenshot
 
@@ -39,6 +41,14 @@ $env:HOSPITAL_DB_INITIALIZE = 'false'
 5. Choose **Créer un compte médecin**, enter synthetic details and a unique password of at least 12 characters, then sign in. Use **Mes Patients → Ajouter un patient** to create your first patient.
 
 For the optional administrator workspace, run `java -cp $cp application.tools.CreateAdmin` in an interactive terminal. There are no default credentials. For an existing **local demo** database, back it up and review the schema first. The `application.tools.InitializeClinicalWorkspace` utility adds missing patient assignment and clinical fields when `HOSPITAL_MIGRATE_LEGACY_SCHEMA=true`; return the setting to false after use. Old approval columns may remain in place and do not gate login. `HOSPITAL_TIME_ZONE` defaults to `Africa/Tunis`.
+
+## Automated tests
+
+```bash
+mvn test
+```
+
+JUnit 5 tests in [`test/`](test/) cover the logic that does not need a database: password hashing and verification (PBKDF2, tamper and malformed-hash rejection, rehash detection), appointment rules (status normalisation, date/time validation, future-date and reason checks), doctor sign-up validation, and the assistant's command routing. They run on every push and pull request in [GitHub Actions](.github/workflows/ci.yml).
 
 ## Verification and limitations
 
