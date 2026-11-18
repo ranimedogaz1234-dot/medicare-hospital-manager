@@ -4,9 +4,13 @@ import application.dao.*;
 import application.model.*;
 import javafx.collections.ObservableList;
 
+import application.util.AppointmentRules;
+
 import java.sql.*;
-import java.time.LocalDate;
+import java.text.Normalizer;
 import java.time.format.DateTimeFormatter;
+import java.util.Locale;
+import java.util.regex.Pattern;
 
 public class HospitalChatbot {
 
@@ -16,18 +20,67 @@ public class HospitalChatbot {
     private DossierMedicalDAO dossierDAO = new DossierMedicalDAO();
     private MedicamentDAO medicamentDAO = new MedicamentDAO();
 
+    /** The command a message asks for. Package-private so it can be unit-tested without a database. */
+    enum Intent { GREETING, TODAY_APPOINTMENTS, ADD_APPOINTMENT, RECORD_SUMMARY, PATIENT_SEARCH, DOCTORS, MEDICATIONS, STATISTICS, HELP, UNKNOWN }
+
+    /** Greetings must be whole words: "hi" used to match inside "historique" and "chiffres". */
+    private static final Pattern GREETING = Pattern.compile("\\b(bonjour|bonsoir|salut|hello|hi)\\b");
+
+    /** Words that belong to a command, never to a patient's name. */
+    private static final Pattern NAME_KEYWORD =
+            Pattern.compile("(chercher|patient|rechercher|trouver|resumer|dossier|historique|medical|de|du)");
+
+    /** Lower-cases, strips accents and trims, so "Médicaments" and "medicaments" are the same command. */
+    static String normalize(String text) {
+        if (text == null) return "";
+        return Normalizer.normalize(text, Normalizer.Form.NFD)
+                .replaceAll("\\p{M}", "")
+                .toLowerCase(Locale.ROOT)
+                .trim();
+    }
+
+    /**
+     * Picks the command for a message. Specific commands are checked before generic ones
+     * (for example "historique patient Sami" is a record summary, not a patient search),
+     * and a greeting only wins when the message asks for nothing else.
+     */
+    static Intent detectIntent(String query) {
+        String q = normalize(query);
+        if (q.contains("rdv du jour") || q.contains("rendez-vous du jour") || q.contains("rendez vous aujourd'hui") || q.contains("consultations aujourd'hui"))
+            return Intent.TODAY_APPOINTMENTS;
+        if (q.contains("ajouter rdv") || q.contains("nouveau rendez-vous") || q.contains("prendre rendez-vous") || q.contains("creer rendez-vous"))
+            return Intent.ADD_APPOINTMENT;
+        if (q.contains("resumer dossier") || q.contains("historique patient") || q.contains("dossier medical"))
+            return Intent.RECORD_SUMMARY;
+        if (q.contains("patient"))
+            return Intent.PATIENT_SEARCH;
+        if (q.contains("medecins") || q.contains("docteurs") || q.contains("specialistes"))
+            return Intent.DOCTORS;
+        if (q.contains("medicament") || q.contains("pharmacie") || q.contains("stock"))
+            return Intent.MEDICATIONS;
+        if (q.contains("statistiques") || q.contains("stats") || q.contains("dashboard") || q.contains("chiffres"))
+            return Intent.STATISTICS;
+        if (q.contains("aide") || q.contains("help") || q.contains("commandes") || q.contains("que peux-tu faire"))
+            return Intent.HELP;
+        if (GREETING.matcher(q).find())
+            return Intent.GREETING;
+        return Intent.UNKNOWN;
+    }
+
     public String processQuery(String query) {
-        String q = query.toLowerCase().trim();
+        if (query == null) query = "";
+        Intent intent = detectIntent(query);
 
         // Salutations
-        if (q.contains("bonjour") || q.contains("salut") || q.contains("hello") || q.contains("hi")) {
+        if (intent == Intent.GREETING) {
             return "Bonjour ! Je suis MediBot, votre assistant hospitalier.\nComment puis-je vous aider aujourd'hui ?\n\nTapez 'aide' pour voir toutes les commandes disponibles.";
         }
 
         // RDV du jour
-        if (q.contains("rdv du jour") || q.contains("rendez-vous du jour") || q.contains("rendez vous aujourd'hui") || q.contains("consultations aujourd'hui")) {
+        if (intent == Intent.TODAY_APPOINTMENTS) {
             try {
-                String today = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                // Same hospital time zone as the dashboard's "RDV aujourd'hui" count.
+                String today = AppointmentRules.today().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
                 ObservableList<RendezVous> rdvs = rendezVousDAO.getRendezVousByDate(today);
                 if (rdvs.isEmpty()) {
                     return "Aucun rendez-vous prevu pour aujourd'hui (" + today + ").";
@@ -46,7 +99,7 @@ public class HospitalChatbot {
         }
 
         // Recherche patient
-        if (q.contains("chercher patient") || q.contains("rechercher patient") || q.contains("trouver patient") || q.contains("patient")) {
+        if (intent == Intent.PATIENT_SEARCH) {
             String name = extractName(query);
             if (name.isEmpty()) {
                 return "Veuillez preciser le nom du patient.\nExemple : 'chercher patient Sami'";
@@ -70,7 +123,7 @@ public class HospitalChatbot {
         }
 
         // Liste medecins
-        if (q.contains("liste des medecins") || q.contains("medecins") || q.contains("docteurs") || q.contains("specialistes")) {
+        if (intent == Intent.DOCTORS) {
             try {
                 ObservableList<Medecin> medecins = medecinDAO.getAllMedecins();
                 StringBuilder sb = new StringBuilder("👨‍⚕️ Liste des medecins :\n");
@@ -87,7 +140,7 @@ public class HospitalChatbot {
         }
 
         // Medicaments
-        if (q.contains("medicament") || q.contains("medicaments") || q.contains("pharmacie") || q.contains("stock")) {
+        if (intent == Intent.MEDICATIONS) {
             try {
                 ObservableList<Medicament> meds = medicamentDAO.getAllMedicaments();
                 StringBuilder sb = new StringBuilder("💊 Medicaments en stock :\n");
@@ -104,12 +157,12 @@ public class HospitalChatbot {
         }
 
         // Ajouter rendez-vous
-        if (q.contains("ajouter rdv") || q.contains("nouveau rendez-vous") || q.contains("prendre rendez-vous") || q.contains("creer rendez-vous")) {
+        if (intent == Intent.ADD_APPOINTMENT) {
             return "Pour ajouter un rendez-vous :\n\n  1. Cliquez sur l'onglet 'Rendez-vous'\n  2. Cliquez sur le bouton 'Nouveau Rendez-vous'\n  3. Remplissez le formulaire et validez.";
         }
 
         // Resume dossier
-        if (q.contains("resumer dossier") || q.contains("historique patient") || q.contains("dossier medical")) {
+        if (intent == Intent.RECORD_SUMMARY) {
             String name = extractName(query);
             if (name.isEmpty()) {
                 return "Veuillez preciser le nom du patient.\nExemple : 'resumer dossier Sami'";
@@ -147,7 +200,7 @@ public class HospitalChatbot {
         }
 
         // Statistiques
-        if (q.contains("statistiques") || q.contains("stats") || q.contains("dashboard") || q.contains("chiffres")) {
+        if (intent == Intent.STATISTICS) {
             try {
                 int patients = patientDAO.getTotalPatients();
                 int medecins = medecinDAO.getTotalMedecins();
@@ -169,7 +222,7 @@ public class HospitalChatbot {
         }
 
         // Aide
-        if (q.contains("aide") || q.contains("help") || q.contains("commandes") || q.contains("que peux-tu faire")) {
+        if (intent == Intent.HELP) {
             return "📖 Commandes disponibles :\n\n" +
                    "  • 'Bonjour'                  — Salutation\n" +
                    "  • 'RDV du jour'              — Voir les rendez-vous d'aujourd'hui\n" +
@@ -185,10 +238,11 @@ public class HospitalChatbot {
         return "Je n'ai pas compris votre message.\nTapez 'aide' pour voir les commandes disponibles.";
     }
 
-    private String extractName(String query) {
-        String[] words = query.split("\\s+");
+    /** Returns the last word that is not a command keyword (accent-insensitive), or "" if there is none. */
+    static String extractName(String query) {
+        String[] words = query.trim().split("\\s+");
         for (int i = words.length - 1; i >= 0; i--) {
-            if (!words[i].toLowerCase().matches("(chercher|patient|rechercher|trouver|resumer|dossier|historique|medical)")) {
+            if (!words[i].isEmpty() && !NAME_KEYWORD.matcher(normalize(words[i])).matches()) {
                 return words[i];
             }
         }
